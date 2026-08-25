@@ -102,7 +102,8 @@ It is safer and clearer than using arbitrary strings such as `"saving"`,
 
 ------------------------------------------------------------------------
 
-## Code Concepts Covered Today
+## Code Concepts Covered Today Day 1
+
 
 -   Classes and objects
 -   Encapsulation
@@ -112,3 +113,14 @@ It is safer and clearer than using arbitrary strings such as `"saving"`,
 -   Getter methods
 -   Enums
 -   Appropriate data types
+- Class vs Object 
+- new keyword 
+- Constructor 
+- Encapsulation
+- Getters 
+- Enum 
+- String for identifiers
+- BigDecimal for money 
+- Object association 
+- Why Account references Customer 
+- Why we don't expose setBalance()
