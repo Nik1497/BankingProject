@@ -30,4 +30,22 @@ public class Account {
     public Customer getCustomer() {
         return customer;
     }
+
+    public void deposit(BigDecimal amount){
+
+            if(amount.compareTo(BigDecimal.ZERO) <= 0) {
+                throw new InvalidAmountException("Deposit amount must be greater than zero!");
+            }
+            balance =  balance.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount){
+        if(amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new InvalidAmountException("Withdrawal amount must be greater than zero!");
+        }
+        if(amount.compareTo(balance)>0){
+            throw new InsufficientBalanceException("Insufficient Balance !");
+        }
+        balance = balance.subtract(amount);
+    }
 }
