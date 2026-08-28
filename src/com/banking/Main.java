@@ -6,12 +6,13 @@ public class Main {
 
     public static void main(String [] args){
           Customer cust = new Customer(101, "Nikhil", "nikhilshirode45@gmail.com", "7709045180");
-        System.out.println(cust.getCustomerEmail());
-        System.out.println(cust.getCustomerId());
-        System.out.println(cust.getCustomerName());
-        System.out.println(cust.getMobileNumber());
+//        System.out.println(cust.getCustomerEmail());
+//        System.out.println(cust.getCustomerId());
+//        System.out.println(cust.getCustomerName());
+//        System.out.println(cust.getMobileNumber());
 
         Account act = new Account("0000011110", new BigDecimal("1000"), AccountType.SAVINGS, cust );
+        Account act1 = new Account(null, new BigDecimal("1000"), AccountType.SAVINGS, cust );
 
         //act.deposit(new BigDecimal("1000"));
 //        try{
@@ -21,14 +22,29 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
 
+//        try{
+//            act.withdraw(new BigDecimal("-2000"));
+//            System.out.println("Transaction Completed !");
+//        }catch(InsufficientBalanceException e){
+//            System.out.println(e.getMessage());
+//        }catch (InvalidAmountException e) {
+//            System.out.println(e.getMessage());
+//        }
+
+           Bank bank = new Bank();
+           try{
+               bank.addAccount(act);
+               bank.addAccount(act1);
+           }catch(DuplicateAccountException e){
+               System.out.println(e.getMessage());
+           }catch(InvalidAccountException e){
+               System.out.println(e.getMessage());
+           }
         try{
-            act.withdraw(new BigDecimal("-2000"));
-            System.out.println("Transaction Completed !");
-        }catch(InsufficientBalanceException e){
-            System.out.println(e.getMessage());
-        }catch (InvalidAmountException e) {
+            Account acct = bank.getAccount("123456");
+            System.out.println("Account Found");
+        }catch(AccountNotFoundException e){
             System.out.println(e.getMessage());
         }
     }
-
 }
