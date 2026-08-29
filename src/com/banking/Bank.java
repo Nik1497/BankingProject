@@ -9,12 +9,22 @@ public class Bank {
     public Bank() {
         accounts = new HashMap<>();
     }
+    //Keeping this  private because we do not want any other class to use this method
+    private void validateAccountNumber(String acctNum){
+        if(acctNum==null || acctNum.isBlank()){
+            throw new InvalidAccountException("Account number cannot be null or blank");
+        }
+        if(acctNum.length()!=10){
+            throw new InvalidAccountException("Account number should consist of 10 digits");
+        }
+        if(!acctNum.matches("\\d+")){
+            throw new InvalidAccountException("Account number should consist only digits");
+        }
+    }
 
     public void addAccount(Account account) {
         String acctNum = account.getAccountNumber();
-        if(acctNum ==null){
-            throw new InvalidAccountException("Account number cannot be null");
-        }
+        validateAccountNumber(acctNum);
         if(accounts.containsKey(acctNum)){
             throw new DuplicateAccountException(acctNum+ " already exists");
         }
@@ -22,10 +32,19 @@ public class Bank {
     }
 
     public Account getAccount(String accountNum) {
+        validateAccountNumber(accountNum);
         if (accounts.containsKey(accountNum)) {
             return accounts.get(accountNum);
         }
         throw new AccountNotFoundException(accountNum+ " Account number not found");
+    }
+
+    public void removeAccount(String accountNum){
+        validateAccountNumber(accountNum);
+        Account account= accounts.remove(accountNum);
+        if(account==null){
+            throw new AccountNotFoundException(accountNum+ " Account number not found");
+        }
     }
 }
 

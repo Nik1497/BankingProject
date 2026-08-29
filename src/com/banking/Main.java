@@ -13,7 +13,7 @@ public class Main {
 
         Account act = new Account("0000011110", new BigDecimal("1000"), AccountType.SAVINGS, cust );
         Account act1 = new Account(null, new BigDecimal("1000"), AccountType.SAVINGS, cust );
-
+            Account act2 = new  Account("", new BigDecimal("1000"), AccountType.CURRENT, cust);
         //act.deposit(new BigDecimal("1000"));
 //        try{
 //            act.deposit(new BigDecimal("500"));
@@ -40,10 +40,30 @@ public class Main {
            }catch(InvalidAccountException e){
                System.out.println(e.getMessage());
            }
+
         try{
-            Account acct = bank.getAccount("123456");
-            System.out.println("Account Found");
+            Account acct = bank.getAccount("12345");
+            System.out.println(acct +"Account Found");
         }catch(AccountNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(InvalidAccountException e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            bank.removeAccount("");
+            System.out.println("account removed");
+        }catch(AccountNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(InvalidAccountException e){
+            System.out.println(e.getMessage());
+        }
+
+        try{
+            bank.removeAccount("");
+            System.out.println("account removed");
+        }catch(AccountNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(InvalidAccountException e){
             System.out.println(e.getMessage());
         }
     }
