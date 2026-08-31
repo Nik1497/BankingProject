@@ -12,26 +12,27 @@ public class Main {
 //        System.out.println(cust.getMobileNumber());
 
         Account act = new Account("0000011110", new BigDecimal("1000"), AccountType.SAVINGS, cust );
-        Account act1 = new Account(null, new BigDecimal("1000"), AccountType.SAVINGS, cust );
-            Account act2 = new  Account("", new BigDecimal("1000"), AccountType.CURRENT, cust);
+        Account act1 = new Account("0000011111", new BigDecimal("2000"), AccountType.SAVINGS, cust );
+            //Account act2 = new  Account("", new BigDecimal("1000"), AccountType.CURRENT, cust);
         //act.deposit(new BigDecimal("1000"));
-//        try{
-//            act.deposit(new BigDecimal("500"));
-//            System.out.println("Transaction Completed!");
-//        }catch(InvalidAmountException  e){
-//            System.out.println(e.getMessage());
-//        }
+        try{
+            act.deposit(new BigDecimal("500"));
+            System.out.println("Transaction Completed!");
+        }catch(InvalidAmountException  e){
+            System.out.println(e.getMessage());
+        }
 
-//        try{
-//            act.withdraw(new BigDecimal("-2000"));
-//            System.out.println("Transaction Completed !");
-//        }catch(InsufficientBalanceException e){
-//            System.out.println(e.getMessage());
-//        }catch (InvalidAmountException e) {
-//            System.out.println(e.getMessage());
-//        }
+        try{
+            act.withdraw(new BigDecimal("-2000"));
+            System.out.println("Transaction Completed !");
+        }catch(InsufficientBalanceException e){
+            System.out.println(e.getMessage());
+        }catch (InvalidAmountException e) {
+            System.out.println(e.getMessage());
+        }
 
            Bank bank = new Bank();
+           BankService bankService = new BankService(bank);
            try{
                bank.addAccount(act);
                bank.addAccount(act1);
@@ -66,5 +67,16 @@ public class Main {
         }catch(InvalidAccountException e){
             System.out.println(e.getMessage());
         }
+
+        try{
+            BankService service = new BankService(bank);
+            service.transfer("0000011110", "0000011111", new BigDecimal("3000"));
+            System.out.println(  bank.getAccount("0000011110").getBalance());
+            System.out.println(bank.getAccount("0000011111").getBalance());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }
