@@ -69,9 +69,9 @@ public class Main {
         }
 
         try{
-            BankService service = new BankService(bank);
+            BankingService  service = new BankService(bank);
+            service.greeting();
             service.transfer("0000011110", "0000011111", new BigDecimal("3000"));
-            System.out.println(  bank.getAccount("0000011110").getBalance());
             System.out.println(bank.getAccount("0000011111").getBalance());
         }catch(Exception e){
             System.out.println(e.getMessage());

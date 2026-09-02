@@ -2,7 +2,7 @@ package com.banking;
 
 import java.math.BigDecimal;
 
-public class BankService {
+public class BankService implements BankingService {
 
    private Bank bank;
 
@@ -11,6 +11,7 @@ public class BankService {
         this.bank = bank;
     }
 
+    @Override
     public void transfer(String sourceActNum, String destActNum, BigDecimal amount){
         Account source = bank.getAccount(sourceActNum);
         Account destination = bank.getAccount(destActNum);
