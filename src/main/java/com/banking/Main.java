@@ -16,6 +16,7 @@ public class Main {
             //Account act2 = new  Account("", new BigDecimal("1000"), AccountType.CURRENT, cust);
         //act.deposit(new BigDecimal("1000"));
         try{
+
             act.deposit(new BigDecimal("500"));
             System.out.println("Transaction Completed!");
         }catch(InvalidAmountException  e){
