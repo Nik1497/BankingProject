@@ -1,5 +1,6 @@
 package com.banking;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +46,10 @@ public class Bank {
         if(account==null){
             throw new AccountNotFoundException(accountNum+ " Account number not found");
         }
+    }
+
+    public Collection<Account> getAccounts(){
+    return accounts.values();
     }
 }
 
