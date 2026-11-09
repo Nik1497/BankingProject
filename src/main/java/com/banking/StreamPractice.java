@@ -43,4 +43,28 @@ public class StreamPractice {
         List<Account> lists = bank.getAccounts().stream().sorted(Comparator.comparing(Account::getBalance).thenComparing(Account::getAccountNumber)).toList();
         return lists;
     }
+
+    public BigDecimal calculateBalance(){
+        BigDecimal balance = bank.getAccounts().stream().map(acc->acc.getBalance()).reduce(BigDecimal.ZERO, (a, b)->a.add(b));
+        return balance;
+    }
+
+    public Optional<BigDecimal> calculateBalanceOptional(){
+        Optional<BigDecimal> balance = bank.getAccounts().stream().map(acc->acc.getBalance()).reduce((a,b)->a.add(b));
+        return balance;
+    }
+
+    public BigDecimal calculateSavingBalance(){
+        Predicate <Account>  saving = account->account.getAccountType()==AccountType.SAVINGS;
+        BigDecimal balance = bank.getAccounts().stream().filter(saving).map(acc->acc.getBalance()).reduce(BigDecimal.ZERO,(a,b)->a.add(b));
+        return balance;
+    }
+
+    public int calculateProduct(List<Integer> numbers){
+        int product = numbers.stream().reduce(1, ( a,  b)-> a*b);
+        return product;
+    }
+
+
 }
+
